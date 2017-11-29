@@ -11,12 +11,12 @@
                     </ul>
                 </div>
                 <form name="testForm" ng-submit="testForm.$valid" novalidate class="border">
-                    <p>testForm.checkBox.$valid = {{testForm.checkBox.$valid}}</p>
+                    <p>testForm.checkBox.$valid = {{testForm.checkBox.$valid}} / {{selected.chBoxes.length}}</p>
                     <fieldset class="form-group col-xs-12" ng-class="{ 'has-error': testForm.checkBox.$invalid, 'has-success': testForm.checkBox.$valid}">
                         <div ng-repeat="o in vm.checkBoxes">
                             <div class="checkbox">
                                 <p>{{o.label}}</p>
-                                <input type="checkbox" name="checkBox" value="{{o.label}}" checklist-model="selected.chBoxes" checklist-value="o">
+                                <input type="checkbox" name="checkBox" value="{{o.label}}" checklist-model="selected.chBoxes" checklist-value="o" checklist-change="testForm.checkBox.$setValidity('required', selected.chBoxes.length > 0)" required="">
                                 <div class="space10"></div>
                             </div>
                         </div>
