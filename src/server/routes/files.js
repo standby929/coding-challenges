@@ -7,8 +7,9 @@ const folderpath = '/data/';
 router.get('/bower', getBower);
 
 function getBower(req, res) {
+    
     var json = {
-        data: "I'm empty, except for the part explaining that I'm empty, that is."
+        data: jsonfileservice.getJsonFromFile('/../../bower.json')
     };
     res.send(json);
     

@@ -58,6 +58,7 @@
                 });
 
             function success(data, status, headers, config) {
+                //console.log("dataservice: " + JSON.stringify(data));
                 return data.data;
             }
         }

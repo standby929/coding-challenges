@@ -10,7 +10,11 @@
         /* Feature areas */
         'app.dashboard',
         'app.tasks',
-        'app.layout'
+        'app.layout',
+        
+        /* Other dependencies */
+        'checklist-model',
+        'jsonFormatter'
     ]);
 
 })();

@@ -16,22 +16,54 @@
             list: [2,3,1,1,4],
             solution: 2
         };
-        vm.result = {
-            count: 0, // should be the total number of stops required to reach the end of the array
-            stops: [{ // stops array contains information about each stop
-                index: 0, // index of the array pos where a certain stop was used
-                value: 0  // the value of the integer in the vm.list[index] position
-            }]
-        };
+        vm.result = {};
         
         activate();
-
+                
         function activate() {
-            vm.result = calculateStops(vm.list);
+            vm.result = {
+                count: 0, // should be the total number of stops required to reach the end of the array
+                stops: []
+            };
+            // Let start examining the elements from the zero index of list array to the value of the zero index
+            vm.result = calculateStops(0, vm.task.list[0]);
         }
 
-        function calculateStops(input) {
-            return {};
+        function calculateStops(from, to) {
+            if (from === 0 && to > 1) {
+                from++;
+                to++;
+            }
+            // Get a slice from the original array
+            var my_arr = vm.task.list.slice(from, to);
+            var tmp = [];
+            // Check each element and calculate the maximum index where we can get and push it in a temporary array
+            for (var i = 0; i < my_arr.length; i++) {
+                tmp.push((from + i) + my_arr[i]);
+            }
+            // Get the maximum value from "tmp" array
+            var max = Math.max.apply(Math, tmp.map(function(item){ return item;}));
+            // Get the last occurence of the maximum value
+            var index = tmp.lastIndexOf(max);
+            // Set new from and to values for the recursive function call
+            var newFrom = to;
+            var newTo = max + 1;
+            // Update result object
+            if (to > 1) {
+                vm.result.stops.push({
+                    index: from + index,
+                    value: vm.task.list[((from + index) < vm.task.list.length) ? (from + index) : (vm.task.list.length - 1)]
+                });
+            }
+            
+            if (newFrom >= vm.task.list.length) {
+                // Update result object's count variable with the length of the stops array and return with the whole object
+                vm.result.count = vm.result.stops.length;
+                return vm.result;
+            } else {
+                // We didn't reach the end of the "road" -> recursive function call
+                return calculateStops(newFrom, newTo);
+            }
         }
 
         // Optional use. Only used to present the result
@@ -99,6 +131,7 @@
             var selectedList = exampleArrays[(Math.floor(Math.random() * exampleArrays.length-1) + 1)];
             vm.task.list = selectedList.list;
             vm.task.solution = selectedList.solution;
+            activate();
         }
 
         function toggleInstructions() {

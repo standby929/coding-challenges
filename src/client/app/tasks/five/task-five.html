@@ -4,7 +4,7 @@
             <article class="day-desc">
                 <h2>--- The Quickest Path ---</h2>
                 <div ng-show="vm.showInstructions" style="border: 1px solid #ccc; padding: 15px;">
-                <pre>
+                    <pre>
                     Imagine yourself sitting in a brand new electric car. Like all electric cars, they need power to charge its battery.
                     Your final destination will require the battery to be charged a few times, but since the charging process can be quite
                     time consuming and known to "try one's patience" - we want to minimize this daunting procedure much as possible.
@@ -30,36 +30,36 @@
              |       |
              v       v
             [2,3,1,1,4]
-                    </pre></code>
-                    The minimum number of stops to reach your final destination is 2. (move 1 step from index 0 to 1, then 3 steps to the last index.)
-                    
-                    Your task:
-                    You want to program the logic for your travel assistance AI to always give you the fastest route based on the available EVCS.
-                    Write a function that accepts the parameter of an array of integers that returns the minimum number of stops as well as the indexes
-                    of the array where those stops are found.
+                            </pre></code>
+                        The minimum number of stops to reach your final destination is 2. (move 1 step from index 0 to 1, then 3 steps to the last index.)
 
-                    * You can assume that you can always reach the last index.
+                        Your task:
+                        You want to program the logic for your travel assistance AI to always give you the fastest route based on the available EVCS.
+                        Write a function that accepts the parameter of an array of integers that returns the minimum number of stops as well as the indexes
+                        of the array where those stops are found.
 
-                </pre>
+                        * You can assume that you can always reach the last index.
+
+                    </pre>
                 </div>
                 <br/>
                 <a class="btn btn-default">
                     <h2 ng-click="vm.toggleInstructions()">{{vm.showInstructions ? 'Hide' : 'Show'}} instructions</h2>
                 </a>
                 <br/><br/>
-                <button ng-click="vm.getNewList()" class="btn btn-default">generate new list</button>
+                <button ng-click="vm.getNewList();" class="btn btn-default">generate new list</button>
                 <p>
                     input: <strong>{{vm.task.list}}</strong><br>
                     your result should be: <strong>{{vm.task.solution}}</strong><br>
                 </p>
-                <p>result: <strong>{{vm.result.numberOfStops}}</strong></p>
-                <p>
+                <p>result: <strong>{{vm.result.count}}</strong></p>
+                <div>
                     <ul>
-                        <li ng-repeat="stop in vm.result.indexes">
-                            index: {{stop.index}}, val: {{stop.val}}
+                        <li ng-repeat="stop in vm.result.stops">
+                            index: {{stop.index}}, val: {{stop.value}}
                         </li>
                     </ul>
-                </p>
+                </div>
             </article>
         </div>
     </section>

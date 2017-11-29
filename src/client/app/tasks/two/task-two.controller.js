@@ -5,11 +5,14 @@
         .module('app.tasks')
         .controller('TaskTwo', TaskTwo);
 
-    TaskTwo.$inject = ['dataservice', 'logger'];
+    TaskTwo.$inject = ['$scope', '$filter', 'dataservice', 'logger'];
     /* @ngInject */
-    function TaskTwo(dataservice, logger) {
+    function TaskTwo($scope, $filter, dataservice, logger) {
         var vm = this;
         vm.problem2Solved = problem2Solved;
+        $scope.selected = {
+            chBoxes: []
+        };
 
         activate();
 
@@ -22,6 +25,7 @@
         function problem2Solved(){
             logger.success('Hurray!', '');
         }
+
     }
 
 })();
